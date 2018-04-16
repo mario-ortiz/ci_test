@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: Test
-          command: './node_modules/.bin/mocha ./src/tests/*.test.js'
+          command: '~/repo/node_modules/.bin/mocha ./src/tests/*.test.js'
 
   deploy:
     workig_directory: ~/repo
