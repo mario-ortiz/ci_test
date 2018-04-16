@@ -39,7 +39,7 @@ jobs:
         name: Show current branch
         command: echo ${CIRCLE_BRANCH}
 
-      - run: yarn install
+      - run: yarn test
 
   deploy:
     workig_directory: ~/repo
