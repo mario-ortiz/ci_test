@@ -22,7 +22,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install
+      - run:
+          name: Install dependencies
+          command: yarn install
 
       - save_cache:
           paths:
@@ -39,7 +41,9 @@ jobs:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
 
-      - run: yarn test
+      - run:
+          name: Test
+          command: yarn test
 
   deploy:
     workig_directory: ~/repo
