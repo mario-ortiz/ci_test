@@ -8,7 +8,7 @@ describe('users route', function() {
       });
 
       it('should return an array', function() {
-        assert.equal([1,2,3].indexOf(4), -1);
+        assert.equal([1,2,3].indexOf(4), 0);
       });
 
     });
