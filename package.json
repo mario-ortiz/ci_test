@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=development && node ./src/server.js",
     "start_prod": "NODE_ENV=production && node ./src/server.js",
-    "test": "mocha ./src/tests/*.test.js"
+    "test": "node_modules/.bin/mocha ./src/tests/*.test.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +14,6 @@
     "dotenv": "5.0.1",
     "mocha": "5.1.0",
     "mongoose": "5.0.14",
-    "restify": "7.1.1",
-    "yarn": "^1.6.0"
+    "restify": "7.1.1"
   }
 }
