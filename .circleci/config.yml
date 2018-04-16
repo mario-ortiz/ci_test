@@ -56,7 +56,7 @@ jobs:
           working_directory: /
           command: |
             sudo apt-get -y -qq update
-            sudo apt-ger install python-pip python-dev build-essential
+            sudo apt-get install python-pip python-dev build-essential
             sudo pip install awscli --upgrade
       - run:
           name: Deploying on AWS EB
@@ -69,15 +69,15 @@ workflows:
         - build
         - test:
             requires:
-              - build
+                - build
             filters:
-              branches:
-                only: master
+                branches:
+                    only: master
         - deploy:
             requires:
-              - build
+                - build
             filters:
-              branches:
-                only: master
+                branches:
+                    only: master
 
 
