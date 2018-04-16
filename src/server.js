@@ -11,6 +11,7 @@ server.use(restify.plugins.bodyParser());
 server.use(restify.plugins.queryParser());
 
 require('./config/db').connect();
+require('./routes/home.js')(server);
 require('./routes/users.js')(server);
 
 server.listen(port, function() {

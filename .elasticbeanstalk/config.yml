@@ -1,0 +1,15 @@
+branch-defaults:
+  master:
+    environment: CiTest-env
+global:
+  application_name: ci-test
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Node.js
+  default_region: us-east-2
+  include_git_submodules: true,
+  instance_profile: null
+  platform_name: null
+  repository: null
+  sc: git
+  workspace_type: Application
