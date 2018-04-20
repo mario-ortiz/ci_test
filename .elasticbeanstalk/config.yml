@@ -2,10 +2,9 @@ branch-defaults:
   staging:
     environment: CiTest-env
   master:
-    environment: CiTestProd-env
+    environment: CiWorkerTest-env
 global:
   application_name: ci-test
-  branch: null
   default_ec2_keyname: null
   default_platform: Node.js
   default_region: us-east-2

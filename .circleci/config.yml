@@ -42,10 +42,10 @@ jobs:
                     sudo apt-get install python-pip python-dev build-essential
                     sudo pip install awsebcli --upgrade
             - run:
-                name: Deploying on AWS EB
+                name: Deploying Prod on AWS EB
                 command: eb deploy
 
-    staging_deploy:
+    deploy_staging:
         workig_directory: ~/repo
         docker:
             - image: circleci/node:8.9.0
@@ -59,10 +59,11 @@ jobs:
                     sudo apt-get install python-pip python-dev build-essential
                     sudo pip install awsebcli --upgrade
             - run:
-                name: Deploying on AWS EB
-                command: |
-                    eb deploy CiTest-env
-                    eb deploy CiTestProd-env
+                name: Deploying Staging Pipelines API on AWS EB
+                command: eb deploy CiTest-env
+            - run:
+                name: Deploying Staging Worker on AWS EB
+                command: eb deploy CiWorkerTest-env
 
 workflows:
   version: 2
@@ -75,7 +76,7 @@ workflows:
             filters:
                 branches:
                     only: master
-        - staging_deploy:
+        - deploy_staging:
             requires:
                 - build
             filters:
