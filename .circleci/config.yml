@@ -1,59 +1,59 @@
 version: 2
 jobs:
-  build:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/node:8.9.0
+    build:
+        working_directory: ~/repo
+        docker:
+            - image: circleci/node:8.9.0
 
-    steps:
-      - checkout
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
+        steps:
+            - checkout
+            - run:
+                name: Show current branch
+                command: echo ${CIRCLE_BRANCH}
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - restore_cache:
+                keys:
+                    - v1-dependencies-{{ checksum "package.json" }}
 
-      - run:
-          name: Install dependencies
-          command: yarn install
+            - run:
+                name: Install dependencies
+                command: yarn install
 
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
-          paths:
-            - node_modules
+            - save_cache:
+                key: v1-dependencies-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
 
-      - run:
-          name: Test
-          command: yarn test
+            - run:
+                name: Test
+                command: yarn test
 
     deploy:
         workig_directory: ~/repo
         docker:
-        - image: circleci/node:8.9.0
+            - image: circleci/node:8.9.0
         steps:
-        - checkout
-        - run:
-            name: Installing Python and AWS-cli
-            working_directory: /
-            command: |
-                sudo apt-get -y -qq update
-                sudo apt-get install python-pip python-dev build-essential
-                sudo pip install awsebcli --upgrade
-        - run:
-            name: Deploying on AWS EB
-            command: eb deploy
+            - checkout
+            - run:
+                name: Installing Python and AWS-cli
+                working_directory: /
+                command: |
+                    sudo apt-get -y -qq update
+                    sudo apt-get install python-pip python-dev build-essential
+                    sudo pip install awsebcli --upgrade
+            - run:
+                name: Deploying on AWS EB
+                command: eb deploy
 
     staging_deploy:
         workig_directory: ~/repo
         docker:
-        - image: circleci/node:8.9.0
+            - image: circleci/node:8.9.0
         steps:
-        - checkout
-        - run:
-            name: Deployin' to stage :D
-            command: echo 'Deploying to stage'
+            - checkout
+            - run:
+                name: Deployin' to stage :D
+                command: echo 'Deploying to stage'
 
 workflows:
   version: 2
