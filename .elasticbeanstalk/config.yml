@@ -2,7 +2,7 @@ branch-defaults:
   staging:
     environment: CiTest-env
   master:
-    environment: CiTest-env
+    environment: CiTestProd-env
 global:
   application_name: ci-test
   branch: null
