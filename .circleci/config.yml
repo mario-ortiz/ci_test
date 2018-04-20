@@ -28,22 +28,32 @@ jobs:
           name: Test
           command: yarn test
 
-  deploy:
-    workig_directory: ~/repo
-    docker:
-      - image: circleci/node:8.9.0
-    steps:
-      - checkout
-      - run:
-          name: Installing Python and AWS-cli
-          working_directory: /
-          command: |
-            sudo apt-get -y -qq update
-            sudo apt-get install python-pip python-dev build-essential
-            sudo pip install awsebcli --upgrade
-      - run:
-          name: Deploying on AWS EB
-          command: eb deploy
+    deploy:
+        workig_directory: ~/repo
+        docker:
+        - image: circleci/node:8.9.0
+        steps:
+        - checkout
+        - run:
+            name: Installing Python and AWS-cli
+            working_directory: /
+            command: |
+                sudo apt-get -y -qq update
+                sudo apt-get install python-pip python-dev build-essential
+                sudo pip install awsebcli --upgrade
+        - run:
+            name: Deploying on AWS EB
+            command: eb deploy
+
+    staging_deploy:
+        workig_directory: ~/repo
+        docker:
+        - image: circleci/node:8.9.0
+        steps:
+        - checkout
+        - run:
+            name: Deployin' to stage :D
+            command: echo 'Deploying to stage'
 
 workflows:
   version: 2
@@ -56,5 +66,11 @@ workflows:
             filters:
                 branches:
                     only: master
+        - staging_deploy:
+            requires:
+                - build
+            filters:
+                branches:
+                    only: staging
 
 
