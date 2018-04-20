@@ -1,4 +1,6 @@
 branch-defaults:
+  staging:
+    environment: CiTest-env
   master:
     environment: CiTest-env
 global:
